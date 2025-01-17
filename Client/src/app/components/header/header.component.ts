@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -10,11 +11,23 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit, OnDestroy {
+  isLoggedIn: boolean = false;
+  private subscription: Subscription | undefined;
+
   authService = inject(AuthService);
   router = inject(Router);
-  isLoggedIn: boolean = this.authService.isLoggedIn();
 
+  ngOnInit(): void {
+    this.subscription = this.authService.isLoggedIn$.subscribe((status) => {
+      this.isLoggedIn = status;
+    });
+  }
+  ngOnDestroy(): void {
+     if (this.subscription) {
+       this.subscription.unsubscribe();
+     }
+  }
 
   logout(): void {
     this.authService.logout();

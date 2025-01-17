@@ -136,7 +136,7 @@ exports.sendEmail = async (req, res, next) => {
 		console.error(error);
 		return next(CreateError(500, "Internal server error"));
 	}
-};
+}
 
 exports.resetPassword = (req, res, next) => {
 	const token = req.body.token;

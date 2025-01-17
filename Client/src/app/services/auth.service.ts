@@ -10,6 +10,7 @@ import { isPlatformBrowser } from '@angular/common';
 export class AuthService {
   platformId: any;
   http = inject(HttpClient);
+  isLoggedIn$ = new BehaviorSubject<boolean>(this.isLoggedIn());
 
   resgisterService(registerObj: any): Observable<any> {
     return this.http.post<any>(
@@ -19,7 +20,9 @@ export class AuthService {
   }
 
   loginService(loginObj: any): Observable<any> {
-    return this.http.post<any>(`${apiurls.authServiceApi}login`, loginObj);
+    return this.http.post<any>(`${apiurls.authServiceApi}login`, loginObj, {
+      withCredentials: true,
+    });
   }
 
   sendEmailService(email: string): Observable<any> {
@@ -39,13 +42,15 @@ export class AuthService {
   }
 
   isLoggedIn(): boolean {
-    if (isPlatformBrowser(this.platformId)) {
-      return !!localStorage.getItem('user_id');
+    if (typeof window !== 'undefined' && window.localStorage) {
+      return !!localStorage.getItem('user_id') 
+     
     }
     return false;
   }
 
   logout(): void {
     localStorage.removeItem('user_id');
+    this.isLoggedIn$.next(false);
   }
 }

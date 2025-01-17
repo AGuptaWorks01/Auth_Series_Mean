@@ -8,7 +8,9 @@ const cors = require('cors')
 
 const roleRoute = require('./routes/role')
 const authRoute = require('./routes/auth')
-const userRouter = require('./routes/user')
+const userRoute = require('./routes/user')
+const bookRoute = require('./routes/book.js')
+const { seedBooksData } = require('./seed.js')
 
 const app = express()
 const port = 3000
@@ -25,7 +27,8 @@ app.use(express.json())
 
 app.use('/api/role', roleRoute)
 app.use('/api/auth', authRoute)
-app.use('/api/user', userRouter)
+app.use('/api/user', userRoute)
+app.use('/api/book', bookRoute)
 
 // Response handler Middleware
 app.use((obj, req, res, next) => {
@@ -43,7 +46,10 @@ app.use((obj, req, res, next) => {
 const ConnectMongoDB = async () => {
 	try {
 		await mongoose.connect(process.env.MONGO_URL)
-		console.log("Connected with MongoDB");
+		if (process.argv.includes("--seed")) {
+			await seedBooksData()
+		}
+		console.log("Connected to Database");
 	} catch (error) {
 		console.log(error);
 	}

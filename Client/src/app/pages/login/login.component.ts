@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { Router, RouterModule } from '@angular/router';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import {
   FormBuilder,
   FormGroup,
@@ -32,13 +32,12 @@ export class LoginComponent {
   }
 
   login() {
-    console.log(this.loginForm.value);
     this.authService.loginService(this.loginForm.value).subscribe({
       next: (res) => {
-        alert('Login Success!');
         localStorage.setItem('user_id', res.data._id);
+        this.authService.isLoggedIn$.next(true);
+        this.router.navigate(['/home']);
         this.loginForm.reset();
-        this.router.navigateByUrl('home');
       },
       error: (err) => {
         alert('Error email or password');

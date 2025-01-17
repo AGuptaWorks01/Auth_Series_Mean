@@ -6,7 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -17,9 +17,11 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './forget-password.component.scss',
 })
 export default class ForgetPasswordComponent implements OnInit {
+  forgetForm!: FormGroup;
+
+  router = inject(Router);
   fb = inject(FormBuilder);
   authService = inject(AuthService);
-  forgetForm!: FormGroup;
 
   ngOnInit(): void {
     this.forgetForm = this.fb.group({
