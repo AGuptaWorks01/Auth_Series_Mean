@@ -3,15 +3,71 @@
 This project implements a user authentication system using Angular on the frontend and Node.js (Express) on the backend. It includes features like user registration, login, password reset, and email verification.
 
 Table of Contents  
-### Overview  
-### Tech Stack  
-### Backend Setup  
-### Frontend Setup  
-### Environment Variables  
-### How to Run the Project  
-### Features  
-### Important Notes  
-### Overview
+# Project Documentation
+
+<details>
+  <summary><strong>Overview</strong></summary>
+  <!-- Content for Overview -->
+  This project is an authentication system built with Node.js and Angular, featuring login, registration, password reset, and email verification.
+</details>
+
+<details>
+  <summary><strong>Tech Stack</strong></summary>
+  <!-- Content for Tech Stack -->
+  - **Backend**: Node.js, Express, MongoDB  
+  - **Frontend**: Angular, HTML, CSS  
+  - **Authentication**: JWT (JSON Web Token)
+</details>
+
+<details>
+  <summary><strong>Backend Setup</strong></summary>
+  <!-- Content for Backend Setup -->
+  1. Clone the repository: `git clone <repo_url>`
+  2. Navigate to the backend folder: `cd backend`
+  3. Install dependencies: `npm install`
+  4. Setup environment variables as mentioned in the "Environment Variables" section.
+</details>
+
+<details>
+  <summary><strong>Frontend Setup</strong></summary>
+  <!-- Content for Frontend Setup -->
+  1. Navigate to the frontend folder: `cd frontend`
+  2. Install dependencies: `npm install`
+  3. Serve the application: `ng serve`
+</details>
+
+<details>
+  <summary><strong>Environment Variables</strong></summary>
+  <!-- Content for Environment Variables -->
+  - `JWT_SECRETKEY` - Secret key for JWT authentication
+  - `DB_URI` - MongoDB connection string
+  - `EMAIL_USER` - Email address used for sending emails
+  - `EMAIL_PASS` - Email password for the above account
+</details>
+
+<details>
+  <summary><strong>How to Run the Project</strong></summary>
+  <!-- Content for How to Run the Project -->
+  1. Ensure that MongoDB is running and your environment variables are configured.
+  2. Start the backend server: `npm start` or `nodemon server.js`
+  3. In a separate terminal, navigate to the frontend and run `ng serve`
+</details>
+
+<details>
+  <summary><strong>Features</strong></summary>
+  <!-- Content for Features -->
+  - User Registration & Login
+  - Password Reset via email
+  - Email Verification and Security
+</details>
+
+<details>
+  <summary><strong>Important Notes</strong></summary>
+  <!-- Content for Important Notes -->
+  - The JWT token is stored in a cookie for authentication purposes.
+  - Make sure to configure the correct environment variables before running the project.
+</details>
+
 ***
 This project implements a user authentication system where users can:
 
