@@ -55,8 +55,8 @@ This project implements a user authentication system using Angular on the fronte
 2. Environment Variables
    Create a .env file in the root of your backend project and configure the following environment variables:
 
-makefile
-
+  makefile
+    - *.env*
 - MONGODB_URI=mongodb+srv://<your_mongo_connection_string>
 - JWT_SECRETKEY=your_secret_key_for_jwt
 - EMAIL_USER=your_email_address
