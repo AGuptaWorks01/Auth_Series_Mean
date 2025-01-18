@@ -24,6 +24,7 @@ exports.register = async (req, res, next) => {
 	// return next(CreateSuccess(200, "User Register Successfully!"))
 }
 
+
 exports.registerAdmin = async (req, res, next) => {
 	const role = await Role.find({})
 	const salt = await bcrypt.genSalt(10)
@@ -41,6 +42,7 @@ exports.registerAdmin = async (req, res, next) => {
 	return next(CreateSuccess(200, "Admin Register Successfully!"))
 }
 
+
 exports.login = async (req, res, next) => {
 	try {
 		const user = await User.findOne({ email: req.body.email })
@@ -56,7 +58,9 @@ exports.login = async (req, res, next) => {
 		}
 
 		const token = jwt.sign({
-			id: user._id, isAdmin: user.isAdmin, roles: roles
+			id: user._id,
+			isAdmin: user.isAdmin,
+			roles: user.roles
 		}, process.env.JWT_SECRETKEY)
 
 		res.cookie("access_token", token, { httpOnly: true })
@@ -64,9 +68,12 @@ exports.login = async (req, res, next) => {
 			.json({
 				status: 200,
 				message: "Login Success!",
-				data: user
+				data: {
+					_id: user._id,
+					email: user.email,
+					roles: user.roles
+				}
 			})
-		// return next(CreateSuccess(200, "Login Successfully!"))
 	} catch (error) {
 		return res.status(500).send('Something is worng')
 	}
@@ -137,6 +144,7 @@ exports.sendEmail = async (req, res, next) => {
 		return next(CreateError(500, "Internal server error"));
 	}
 }
+
 
 exports.resetPassword = (req, res, next) => {
 	const token = req.body.token;

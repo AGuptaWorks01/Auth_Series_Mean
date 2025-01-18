@@ -20,9 +20,10 @@ export class AuthService {
   }
 
   loginService(loginObj: any): Observable<any> {
-    return this.http.post<any>(`${apiurls.authServiceApi}login`, loginObj, {
-      withCredentials: true,
-    });
+    return this.http.post<any>(
+      `${apiurls.authServiceApi}login`,
+      loginObj // { withCredentials: true, }
+    );
   }
 
   sendEmailService(email: string): Observable<any> {
@@ -43,8 +44,7 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     if (typeof window !== 'undefined' && window.localStorage) {
-      return !!localStorage.getItem('user_id') 
-     
+      return !!localStorage.getItem('user_id');
     }
     return false;
   }
