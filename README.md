@@ -61,7 +61,7 @@ npm run dev
 This will start the server using nodemon, which will automatically restart when there are code changes.   
 
 4. API Endpoints   
-   - POST /register: Registers a new user.    
+  -- POST /register: Registers a new user.    
   - POST /login: Logs in the user (returns a JWT token and sets it in the cookie).    
   - POST /send-email: Sends a reset password link to the user's email.   
   - POST /reset-password: Resets the password using the provided token.   
