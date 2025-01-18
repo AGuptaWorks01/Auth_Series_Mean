@@ -23,6 +23,7 @@ This project implements a user authentication system using Angular on the fronte
 - Access the Home component only if logged in (using an Angular Auth Guard).
 
 > Tech Stack
+> ---
 > **Backend**
 
 - Node.js and Express.js for server-side development.
@@ -35,6 +36,7 @@ This project implements a user authentication system using Angular on the fronte
 - CORS for enabling cross-origin resource sharing.
 - Morgan for HTTP request logging.
 
+ ***
 > **Frontend**
 
 - Angular for building the front-end of the application.
@@ -42,11 +44,12 @@ This project implements a user authentication system using Angular on the fronte
 - Angular Router for navigating between pages.
 - Angular Auth Guard for protecting routes that require authentication.
 
+  ***
 > _Backend Setup_
 
 1. Install Dependencies
    Make sure you have Node.js installed. Then, navigate to the backend directory and install the required dependencies:
-
+   ```bash
    npm install
 
 2. Environment Variables
@@ -63,10 +66,11 @@ makefile
 3. Starting the Backend Server
    After installing the dependencies and setting up the environment variables, run the backend server:
 
-npm run dev
+   ```
+   npm run dev
 This will start the server using nodemon, which will automatically restart when there are code changes.
 
-4. API Endpoints
+4. *API Endpoints*
 
 - POST /register: Registers a new user.
 - POST /login: Logs in the user (returns a JWT token and sets it in the cookie).
@@ -79,13 +83,16 @@ This will start the server using nodemon, which will automatically restart when 
 1. Install Dependencies
    Navigate to the frontend directory and install the required dependencies:
 
-npm install 2. Configuration
+    ```
+   npm install 
+2. Configuration
 Ensure you have the Angular environment set up for the application. Update the API URLs in your api.urls.ts file for making HTTP requests.
 
 3. Running the Frontend
    After installing the dependencies, you can run the frontend using the Angular CLI:
 
-ng serve
+   ```
+   ng serve
 This will start the Angular development server on http://localhost:4200.
 
 4. Angular Routes
